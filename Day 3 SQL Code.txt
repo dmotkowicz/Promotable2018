@@ -1,0 +1,37 @@
+-- Create Schema
+Create Schema "danmotkowicz"
+	Authorization postgres;
+-- Create Movies Table
+Create Table danmotkowicz.movies (
+	movie_name VARCHAR (30),
+	length FLOAT NOT Null,
+	number_of_minutes FLOAT NOT Null,  
+	director VARCHAR (30),
+	PRIMARY KEY (movie_name)
+);
+-- ALTER STATEMENTS
+ALTER TABLE danmotkowicz.movies
+	ADD producer VARCHAR (50)
+	
+ALTER TABLE danmotkowicz.movies
+DROP COlUMN number_of_minutes;
+
+
+ALTER TABLE danmotkowicz.movies
+ALTER COLUMN director TYPE VARCHAR (50);
+
+-- INSERT DATA INTO MOVIE TABLES
+INSERT INTO danmotkowicz.movies (movie_name, length, director, producer)
+VALUES ('Dark Knight', 152, 'Chris Nolan', 'Chris Nolan');
+
+INSERT INTO danmotkowicz.movies (movie_name, length, director, producer)
+VALUES ('Incredibles 2', 125, 'Brad Bird', 'John Lasseter');
+
+INSERT INTO danmotkowicz.movies (movie_name, length, director, producer)
+VALUES ('Jurassic World', 124, 'Colin Trevorrow', 'Colin Trevorrow');
+
+INSERT INTO danmotkowicz.movies (movie_name, length, director, producer)
+VALUES ('Oceans 8', 0, 'Gary Ross', 'George Clooney');
+
+SELECT * 
+FROM danmotkowicz.movies

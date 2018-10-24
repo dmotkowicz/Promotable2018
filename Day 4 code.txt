@@ -1,0 +1,117 @@
+-- Create Table
+Create Table danmotkowicz.titanic (
+	pclass INTEGER,
+	survived INTEGER,
+	name TEXT,
+	sex TEXT,
+	age FLOAT(5),
+	sibsp INTEGER,
+	parch INTEGER,
+	ticket TEXT,
+	fare FLOAT(5),
+	cabin TEXT,
+	embarked TEXT,
+	boat INTEGER,
+	body INTEGER,
+	home_dest TEXT,
+	primary key (name,ticket)
+);
+
+--DISTINCT
+
+--Select Statement
+SELECT * from danmotkowicz.titanic
+
+SELECT home_dest from danmotkowicz.titanic
+SELECT DISTINCT home_dest from danmotkowicz.titanic
+SELECT DISTINCT * from danmotkowicz.titanic 
+
+--WHERE CLAUSE
+SELECT * from danmotkowicz.titanic where age >18 and age <65
+
+--Select just the name and home destination
+SELECT name,home_dest from danmotkowicz.titanic 
+
+--Select passengers with home destination of "New York, NY"
+SELECT * from danmotkowicz.titanic where home_dest = 'New York, NY'
+
+--Select the distinct pclass values
+SELECT DISTINCT pclass from danmotkowicz.titanic
+
+--Select all passengers with home destination of "St Louis, MO" with pclass of 1
+SELECT * from danmotkowicz.titanic where home_dest = 'St Louis, MO' and pclass = 1;
+
+--ORDER BY
+SELECT * from danmotkowicz.titanic where fare is not null order by fare desc;
+SELECT * from danmotkowicz.titanic where fare is not null order by fare asc;
+
+--LIMIT
+SELECT * from danmotkowicz.titanic where fare is not null order by fare desc limit 10
+
+--LIKE
+SELECT * FROM danmotkowicz.titanic where name LIKE 'F%'
+
+--Modify the age column to be an int
+ALTER TABLE danmotkowicz.titanic
+ALTER COLUMN age TYPE integer;
+
+--Select all passengers and order by their age
+select * from danmotkowicz.titanic order by age asc
+
+--Select 5 passengers from the table
+select * from danmotkowicz.titanic limit 5
+
+--Select passengers with the string "Hudson" in their name
+select * from danmotkowicz.titanic where name like '%Hudson%';
+
+--Update passenger "Bird, Miss. Ellen" to have a pclass of 3
+UPDATE danmotkowicz.titanic 
+SET pclass = 3
+Where name = 'Bird, Miss. Ellen'
+
+SELECT pclass from danmotkowicz.titanic
+WHERE name = 'Bird, Miss. Ellen'
+
+--CREATE TABLE
+CREATE TABLE danmotkowicz.state_beer(
+state varchar(30),
+state_beer varchar(30),
+primary key (state)
+);
+
+--INSERT
+INSERT INTO danmotkowicz.state_beer(state, state_beer)
+VALUES ('Illinois', 'Blue Moon'),
+('Hawaii', 'Aloha'),
+('Washington', 'Rainier'),
+('Missouri', 'Yuengling');
+
+--CREATE TABLE
+CREATE TABLE danmotkowicz.state_snack(
+state varchar(30),
+snack varchar(30),
+PRIMARY KEY (state)
+);
+
+--INSERT
+INSERT INTO danmotkowicz.state_snack(state, snack)
+VALUES
+('Illinois', 'Popcorn'),
+('Missouri', 'Ice Cream'),
+('Louisiana', 'Gumbo');
+
+--INNER JOIN
+SELECT *
+FROM danmotkowicz.state_beer sb INNER JOIN danmotkowicz.state_snack ss on sb.state = ss.state;
+
+--LEFT JOIN
+SELECT *
+FROM danmotkowicz.state_beer sb LEFT JOIN danmotkowicz.state_snack ss on sb.state = ss.state;
+
+--RIGHT JOIN
+SELECT *
+FROM danmotkowicz.state_beer sb RIGHT JOIN danmotkowicz.state_snack ss on sb.state = ss.state;
+
+--FULL JOIN 
+SELECT *
+FROM danmotkowicz.state_beer sb FULL JOIN danmotkowicz.state_snack ss on sb.state = ss.state;
